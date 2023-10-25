@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import MatrixComponent from './pixelboard/pixelboard';
 import AllChar from './pixelboard/allChar';
-import DownloadPdfButton from './pixelboard/DownloadPdf';
+import { Nav } from './Nav';
 
 function App() {
 	const [currentString, setCurrentString] = useState<string>('');
@@ -40,33 +40,16 @@ function App() {
 		}
 	};
 
-	const formatWordsAsCode = () => {
-		const codeOutput = `Words: [${allWords
-			.map((word) => `'${word}'`)
-			.join(', ')}]`;
-
-		const blob = new Blob([codeOutput], { type: 'text/plain' });
-
-		const url = URL.createObjectURL(blob);
-
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'words.txt';
-
-		a.click();
-
-		URL.revokeObjectURL(url);
-	};
-
 	return (
 		<div>
+			<Nav allWords={allWords} width={width} />
 			<input
 				type='range'
 				min='4'
 				max='50'
 				onChange={(e) => setWidth(parseInt(e.target.value))}
 			></input>
-			<DownloadPdfButton width={width} height={5} words={allWords} />
+
 			<MatrixComponent
 				width={width}
 				height={5}
@@ -86,7 +69,7 @@ function App() {
 					</li>
 				))}
 			</ul>
-			<button onClick={formatWordsAsCode}>Download Words as Code</button>
+
 			<AllChar />
 		</div>
 	);
