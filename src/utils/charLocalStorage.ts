@@ -6,7 +6,7 @@ const saveCharCoordinatesToLocal = (char: string, coordinates: []) => {
   charCoordinates[char] = coordinates;
 
   localStorage.setItem("charCoordinates", JSON.stringify(charCoordinates));
-  console.log("saved");
+
 };
 
 const getCharCoordinatesFromLocal = (): object => {

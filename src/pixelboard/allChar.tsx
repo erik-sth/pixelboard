@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getCharCoordinatesFromLocal } from "../utils/charLocalStorage";
 import Char from "./char";
 
@@ -7,11 +7,11 @@ export const AllChar = () => {
   const [currentChar, setCurrentChar] = useState<string>("A");
   return (
     <div>
-        {chars.map((char, index) => (
-            <button onClick={(e) => setCurrentChar(e.target.value)} key={index}>
-              {char}
-            </button>
-        ))}
+      {chars.map((char, index) => (
+        <button onClick={() => setCurrentChar(char)} key={index}>
+          {char}
+        </button>
+      ))}
       <Char input={currentChar} />
     </div>
   );

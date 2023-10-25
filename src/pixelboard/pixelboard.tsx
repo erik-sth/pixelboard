@@ -211,7 +211,6 @@ const MatrixComponent = ({ height, width, word }: Props) => {
     for (let i = 0; i < inputText.length; i++) {
       const char = inputText[i].toUpperCase();
       const coordinates = getCharCoordinatesFromLocal()[char];
-      console.log(coordinates);
 
       if (coordinates) {
         for (let j = 0; j < coordinates.length; j++) {
