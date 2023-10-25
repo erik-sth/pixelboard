@@ -12,7 +12,8 @@ export const AllChar = () => {
     setCurrentChar(inputValue);
     e.target.elements.textInput.value = "";
   };
-
+  
+  
   return (
     <div>
       {chars.map((char, index) => (
@@ -21,11 +22,9 @@ export const AllChar = () => {
         </button>
       ))}
       <Char input={currentChar} />
+      <div>Currently editing: {currentChar}</div>
       <form onSubmit={handleFormSubmit}>
-        <input
-          name="textInput"
-          placeholder="Enter text"
-        />
+        <input name="textInput" placeholder="Enter text" />
         <button type="submit">Submit</button>
       </form>
     </div>
