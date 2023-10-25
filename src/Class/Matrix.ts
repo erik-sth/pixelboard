@@ -15,6 +15,10 @@ class Matrix {
 	getMatrix() {
 		return this.matrix;
 	}
+	updateWidth(width: number) {
+		this.width = width;
+		this.matrix = createEmptyMatrix(width, this.height);
+	}
 
 	mapInputToMatrix(word: string): Matrix {
 		this.matrix = createEmptyMatrix(this.width, this.height);
