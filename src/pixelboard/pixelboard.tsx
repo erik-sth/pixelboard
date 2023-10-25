@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import {
-	getCharCoordinatesFromLocal,
-	saveCharCoordinatesToLocal,
-} from '../utils/charLocalStorage';
+import { saveCharCoordinatesToLocal } from '../utils/charLocalStorage';
 import charToCoordinates from '../data/char';
+
+import Matrix from '../Class/Matrix';
+import { createEmptyMatrix } from '../utils/matrix';
 
 interface Props {
 	height: number;
@@ -20,44 +20,19 @@ const MatrixComponent = ({ height, width, word }: Props) => {
 		}
 		localStorage.setItem('savedChar', 'true');
 	}, []);
+
+	const [matrix] = useState(() => new Matrix(width, height));
+	const [matrixV, setMatrixV] = useState<boolean[][]>(
+		createEmptyMatrix(width, length)
+	);
 	useEffect(() => {
-		updateMatrixFromText(word);
+		matrix.mapInputToMatrix(word);
+		setMatrixV(matrix.getMatrix());
 	}, [word]);
-	const [matrix, setMatrix] = useState(() => {
-		const initialMatrix = Array.from({ length: height }, () =>
-			Array(width).fill(false)
-		);
-		return initialMatrix;
-	});
-
-	const updateMatrixFromText = (inputText: string) => {
-		const newMatrix = Array.from({ length: height }, () =>
-			Array(width).fill(false)
-		);
-
-		let currentXPosition = 0;
-
-		for (let i = 0; i < inputText.length; i++) {
-			const char = inputText[i].toUpperCase();
-			const coordinates = getCharCoordinatesFromLocal()[char];
-
-			if (coordinates) {
-				for (let j = 0; j < coordinates.length; j++) {
-					for (let k = 0; k < coordinates[j].length; k++) {
-						newMatrix[j][k + currentXPosition] = coordinates[j][k];
-					}
-				}
-			}
-
-			currentXPosition += coordinates[0].length + 1;
-		}
-
-		setMatrix(newMatrix);
-	};
 
 	return (
 		<div>
-			{matrix.map((row, rowIndex) => (
+			{matrixV.map((row, rowIndex) => (
 				<div key={rowIndex}>
 					{row.map((cell, colIndex) => (
 						<span

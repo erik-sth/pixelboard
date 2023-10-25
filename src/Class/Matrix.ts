@@ -1,22 +1,27 @@
-import { createEmptyMatrix } from '../utils/Matrix';
 import { getCharCoordinatesFromLocal } from '../utils/charLocalStorage';
+import { createEmptyMatrix } from '../utils/matrix';
 
 class Matrix {
 	matrix: boolean[][];
 	width: number;
 	height: number;
+
 	constructor(width: number, height: number) {
 		this.matrix = createEmptyMatrix(width, height);
 		this.width = width;
 		this.height = height;
 	}
 
-	mapInputToMatrix(word: string) {
+	getMatrix() {
+		return this.matrix;
+	}
+
+	mapInputToMatrix(word: string): Matrix {
 		this.matrix = createEmptyMatrix(this.width, this.height);
 
 		let currentXPosition = 0;
 
-		for (let i = 0; i < inputText.word; i++) {
+		for (let i = 0; i < word.length; i++) {
 			const char = word[i].toUpperCase();
 			const coordinates = getCharCoordinatesFromLocal()[char];
 
@@ -31,6 +36,9 @@ class Matrix {
 
 			currentXPosition += coordinates[0].length + 1;
 		}
+
+		return this;
 	}
 }
+
 export default Matrix;
