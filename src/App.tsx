@@ -1,18 +1,36 @@
-import AllChar from "./pixelboard/allChar";
+import React, { useState } from "react";
 import MatrixComponent from "./pixelboard/pixelboard";
-import { useState } from "react";
+import AllChar from "./pixelboard/allChar";
 
 function App() {
   const [currentString, setCurrentString] = useState<string>("");
-  const [allWords, setAllWords] = useState<String[]>([]);
+  const [allWords, setAllWords] = useState<string[]>([]);
   const [width, setWidth] = useState<number>(20);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.textInput.value;
 
-    setAllWords([...allWords, inputValue]);
+    setAllWords((prevWords) => [...prevWords, inputValue]);
     e.target.elements.textInput.value = "";
+  };
+
+  const formatWordsAsCode = () => {
+    const codeOutput = `Words: [${allWords
+      .map((word) => `'${word}'`)
+      .join(", ")}];`;
+
+    const blob = new Blob([codeOutput], { type: "text/plain" });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "words.txt";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -41,6 +59,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <button onClick={formatWordsAsCode}>Download Words as Code</button>
       <AllChar />
     </div>
   );
