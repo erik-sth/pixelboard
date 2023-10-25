@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
-const matrixSize = { height: 5, width: 19 };
+interface Props {
+  height: number;
+  width: number;
+  word: String;
+}
 
 const charToCoordinates = {
   A: [
@@ -109,14 +113,6 @@ const charToCoordinates = {
     [1, 0, 0],
     [1, 0, 0],
   ],
-  Q: [
-    [0, 1, 0],
-    [1, 0, 1],
-    [1, 0, 1],
-    [1, 0, 1],
-    [0, 1, 1],
-    [0, 0, 1],
-  ],
   R: [
     [1, 1, 1],
     [1, 0, 1],
@@ -174,25 +170,28 @@ const charToCoordinates = {
     [0, 1, 0],
   ],
   Z: [
-    [1, 0, 0, 0, 1],
-    [0, 1, 0, 1, 0],
-    [0, 0, 1, 0, 0],
-    [0, 1, 0, 1, 0],
-    [1, 0, 0, 0, 1],
+    [1, 1, 1, 1],
+    [0, 0, 0, 1],
+    [0, 0, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 1, 1],
   ],
 };
 
-const MatrixComponent = () => {
+const MatrixComponent = ({ height, width, word }: Props) => {
+  useEffect(() => {
+    updateMatrixFromText(word);
+  }, [word]);
   const [matrix, setMatrix] = useState(() => {
-    const initialMatrix = Array.from({ length: matrixSize.height }, () =>
-      Array(matrixSize.width).fill(false)
+    const initialMatrix = Array.from({ length: height }, () =>
+      Array(width).fill(false)
     );
     return initialMatrix;
   });
 
   const updateMatrixFromText = (inputText: String) => {
-    const newMatrix = Array.from({ length: matrixSize.height }, () =>
-      Array(matrixSize.width).fill(false)
+    const newMatrix = Array.from({ length: height }, () =>
+      Array(width).fill(false)
     );
 
     let currentXPosition = 0;
@@ -218,11 +217,6 @@ const MatrixComponent = () => {
 
   return (
     <div>
-      <textarea
-        placeholder="Enter text"
-        onBlur={(e) => updateMatrixFromText(e.target.value)}
-      />
-
       {matrix.map((row, rowIndex) => (
         <div key={rowIndex}>
           {row.map((cell, colIndex) => (
