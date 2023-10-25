@@ -179,30 +179,22 @@ const charToCoordinates = {
 };
 
 const MatrixComponent = ({ height, width, word }: Props) => {
-	// Function to save character coordinates to local storage
 	const saveCharCoordinatesToLocal = (char: string, coordinates: []) => {
-		// Get existing data from local storage
 		const existingData = localStorage.getItem('charCoordinates');
 
-		// Parse existing data or initialize an empty object
 		const charCoordinates = existingData ? JSON.parse(existingData) : {};
 
-		// Save or update the coordinates for the given character
 		charCoordinates[char] = coordinates;
 
-		// Convert the updated data back to a string and save to local storage
 		localStorage.setItem(
 			'charCoordinates',
 			JSON.stringify(charCoordinates)
 		);
 	};
 
-	// Function to get character coordinates from local storage
 	const getCharCoordinatesFromLocal = (): object => {
-		// Get data from local storage
 		const charCoordinates = localStorage.getItem('charCoordinates');
 
-		// Parse the data or return an empty object if no data is found
 		return charCoordinates ? JSON.parse(charCoordinates) : {};
 	};
 
