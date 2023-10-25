@@ -7,7 +7,7 @@ interface Props {
 	width: number;
 }
 const DownloadPdfButton = ({ width, height, words }: Props) => {
-	const saved: boolean[][][] = [];
+	const saved: number[][][] = [];
 	const wordSaved: string[] = [];
 
 	function calc() {}

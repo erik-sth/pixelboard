@@ -1,4 +1,6 @@
-const charToCoordinates = {
+import { CharCoordinates } from '../types/Coordinates';
+
+const charToCoordinates: CharCoordinates = {
 	A: [
 		[0, 1, 0],
 		[1, 0, 1],

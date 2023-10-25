@@ -1,4 +1,6 @@
-const saveCharCoordinatesToLocal = (char: string, coordinates: []) => {
+import { CharCoordinates } from '../types/Coordinates';
+
+const saveCharCoordinatesToLocal = (char: string, coordinates: number[][]) => {
 	const existingData = localStorage.getItem('charCoordinates');
 
 	const charCoordinates = existingData ? JSON.parse(existingData) : {};
@@ -8,9 +10,8 @@ const saveCharCoordinatesToLocal = (char: string, coordinates: []) => {
 	localStorage.setItem('charCoordinates', JSON.stringify(charCoordinates));
 };
 
-const getCharCoordinatesFromLocal = (): object => {
+const getCharCoordinatesFromLocal = (): CharCoordinates => {
 	const charCoordinates = localStorage.getItem('charCoordinates');
-
 	return charCoordinates ? JSON.parse(charCoordinates) : {};
 };
 

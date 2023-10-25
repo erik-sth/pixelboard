@@ -2,7 +2,7 @@ import { getCharCoordinatesFromLocal } from '../utils/charLocalStorage';
 import { createEmptyMatrix } from '../utils/matrix';
 
 class Matrix {
-	matrix: boolean[][];
+	matrix: number[][];
 	width: number;
 	height: number;
 
@@ -14,6 +14,10 @@ class Matrix {
 
 	getMatrix() {
 		return this.matrix;
+	}
+	updateWidth(width: number) {
+		this.width = width;
+		this.matrix = createEmptyMatrix(width, this.height);
 	}
 
 	mapInputToMatrix(word: string): Matrix {
