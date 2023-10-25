@@ -22,7 +22,7 @@ const MatrixComponent = ({ height, width, word }: Props) => {
 	}, []);
 
 	const [matrix] = useState(() => new Matrix(width, height));
-	const [matrixV, setMatrixV] = useState<boolean[][]>(
+	const [matrixV, setMatrixV] = useState<number[][]>(
 		createEmptyMatrix(width, length)
 	);
 	useEffect(() => {

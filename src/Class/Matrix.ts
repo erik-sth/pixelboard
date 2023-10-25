@@ -2,7 +2,7 @@ import { getCharCoordinatesFromLocal } from '../utils/charLocalStorage';
 import { createEmptyMatrix } from '../utils/matrix';
 
 class Matrix {
-	matrix: boolean[][];
+	matrix: number[][];
 	width: number;
 	height: number;
 
