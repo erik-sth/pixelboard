@@ -191,9 +191,10 @@ const MatrixComponent = ({ height, width, word }: Props) => {
     }
     localStorage.setItem("savedChar", "true");
   }, []);
+
   useEffect(() => {
     updateMatrixFromText(word);
-  }, [word]);
+  }, [word, width]);
   const [matrix, setMatrix] = useState(() => {
     const initialMatrix = Array.from({ length: height }, () =>
       Array(width).fill(false)

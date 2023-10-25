@@ -5,36 +5,33 @@ import { useState } from "react";
 function App() {
   const [currentString, setCurrentString] = useState<string>("");
   const [allWords, setAllWords] = useState<String[]>([]);
+  const [width, setWidth] = useState<number>(20);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.textInput.value;
 
-    const isValidInput = /^[A-Z]+$/.test(inputValue);
-
-    if (isValidInput) {
-      setAllWords([...allWords, inputValue]);
-    } else {
-      alert("Please enter only uppercase letters A-Z.");
-    }
-
+    setAllWords([...allWords, inputValue]);
     e.target.elements.textInput.value = "";
   };
 
   return (
     <div>
+      <input
+        type="range"
+        min="4"
+        max="50"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setWidth(parseInt(e.target.value))
+        }
+      ></input>
       <MatrixComponent
-        width={20}
+        width={width}
         height={5}
         word={currentString}
       ></MatrixComponent>
       <form onSubmit={handleFormSubmit}>
-        <input
-          name="textInput"
-          placeholder="Enter text"
-          pattern="[A-Z]+"
-          title="Please enter one or more uppercase letters A-Z"
-        />
+        <input name="textInput" placeholder="Enter text" />
         <button type="submit">Submit</button>
       </form>
       <ul>

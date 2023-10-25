@@ -20,11 +20,17 @@ const Char: React.FC<Props> = ({ input }) => {
     saveCharCoordinatesToLocal(input, newMatrix);
   };
   useEffect(() => {
-    setMatrix(getCharCoordinatesFromLocal()[input]);
+    if (initialMatrix) {
+      setMatrix(getCharCoordinatesFromLocal()[input]);
+    } else {
+      const newMatrix = Array.from({ length: 5 }, () => Array(5).fill(false));
+      setMatrix(newMatrix);
+    }
   }, [input]);
   if (!matrix) {
     return <div>Matrix not found</div>;
   }
+
   return (
     <div>
       {matrix.map((row, rowIndex) => (
