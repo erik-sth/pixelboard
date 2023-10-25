@@ -1,30 +1,37 @@
-import React, { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import MatrixComponent from "./pixelboard/pixelboard";
 import AllChar from "./pixelboard/allChar";
-import DownloadPdfButton from "./pixelboard/DownloadPdf";
+import "./App.css";
+import { Nav } from "./Nav";
 
 function App() {
   const [currentString, setCurrentString] = useState<string>("");
   const [allWords, setAllWords] = useState<string[]>([]);
   const [width, setWidth] = useState<number>(20);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const inputValue = e.target.elements.textInput.value;
 
-    setAllWords((prevWords) => [...prevWords, inputValue]);
-    e.target.elements.textInput.value = "";
+    const inputElement = e.currentTarget.querySelector(
+      '[name="textInput"]'
+    ) as HTMLInputElement;
+
+    if (inputElement) {
+      const inputValue = inputElement.value;
+
+      setAllWords((prevWords) => [...prevWords, inputValue]);
+      inputElement.value = "";
+    }
   };
-
-  const handleFileUpload = (e) => {
+  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target;
-    const file = fileInput.files[0];
+    const file = fileInput.files?.[0];
 
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        const fileContent = event.target.result;
-        const words = fileContent.match(/\b\w+\b/g) || []; // Extract words using a regular expression
+        const fileContent = (event.target as FileReader).result as string;
+        const words = fileContent.match(/\b\w+\b/g) || [];
 
         setAllWords((prevWords) => [...prevWords, ...words]);
       };
@@ -33,38 +40,18 @@ function App() {
     }
   };
 
-  const formatWordsAsCode = () => {
-    const codeOutput = `Words: [${allWords
-      .map((word) => `'${word}'`)
-      .join(", ")}]`;
-
-    const blob = new Blob([codeOutput], { type: "text/plain" });
-
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "words.txt";
-
-    a.click();
-
-    URL.revokeObjectURL(url);
-  };
-
   return (
     <div>
-      <input
-        type="range"
-        min="4"
-        max="50"
-        onChange={(e) => setWidth(parseInt(e.target.value))}
-      ></input>
-      <DownloadPdfButton width={width} height={5} words={allWords} />
-      <MatrixComponent
-        width={width}
-        height={5}
-        word={currentString}
-      ></MatrixComponent>
+      <Nav width={width} allWords={allWords}></Nav>
+      <div className="slider-and-buttons">
+        <input
+          type="range"
+          min="4"
+          max="50"
+          onChange={(e) => setWidth(parseInt(e.target.value))}
+        />
+      </div>
+      <MatrixComponent width={width} height={5} word={currentString} />
       <form onSubmit={handleFormSubmit}>
         <input name="textInput" placeholder="Enter text" />
         <button type="submit">Submit</button>
@@ -77,7 +64,6 @@ function App() {
           </li>
         ))}
       </ul>
-      <button onClick={formatWordsAsCode}>Download Words as Code</button>
       <AllChar />
     </div>
   );
