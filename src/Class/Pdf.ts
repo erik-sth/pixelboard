@@ -22,7 +22,8 @@ class PDFGenerator {
 	}
 
 	addContent(content: string) {
-		this.currentCount += 10;
+		this.currentCount += 8;
+		this.pdf.setFontSize(12);
 		this.pdf.text(content, 10, this.currentCount);
 	}
 
