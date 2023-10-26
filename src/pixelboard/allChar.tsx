@@ -27,7 +27,7 @@ export const AllChar = () => {
     return (
         <div className="max-width container">
             <div>
-                <h4>Currently editing: {currentChar}</h4>
+                <h4 className="reset">Editing: {currentChar}</h4>
                 <Char input={currentChar} />
             </div>
             <div>

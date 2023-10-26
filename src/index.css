@@ -50,3 +50,7 @@ ul {
 li {
     width: 100%;
 }
+.reset {
+    margin: 0;
+    padding: 0;
+}
