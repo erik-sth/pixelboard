@@ -47,14 +47,7 @@ function App() {
             <Nav allWords={allWords} width={width} />
 
             <div className="container">
-                {' '}
-                <MatrixComponent
-                    width={width}
-                    height={5}
-                    word={currentString}
-                ></MatrixComponent>
                 <div>
-                    {' '}
                     <form onSubmit={handleFormSubmit}>
                         <input
                             pattern={'^[a-zA-Z]+$'}
@@ -73,6 +66,11 @@ function App() {
                         }
                     />
                 </div>
+                <MatrixComponent
+                    width={width}
+                    height={5}
+                    word={currentString}
+                ></MatrixComponent>
                 <div>
                     <h3>Settings</h3>
                     <input

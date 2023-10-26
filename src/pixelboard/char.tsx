@@ -65,8 +65,8 @@ const Char: React.FC<Props> = ({ input }) => {
             <div className="container">
                 <input
                     type="range"
-                    min="3"
-                    max="6"
+                    min={1}
+                    max={6}
                     value={width}
                     onChange={(e) => setWidth(parseInt(e.target.value))}
                 ></input>{' '}
