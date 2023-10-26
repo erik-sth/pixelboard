@@ -1,33 +1,35 @@
 import DownloadPdfButton from './pixelboard/DownloadPdf';
 
 interface Props {
-	width: number;
-	allWords: string[];
+    width: number;
+    allWords: string[];
 }
 
 export const Nav = ({ width, allWords }: Props) => {
-	const formatWordsAsCode = () => {
-		const codeOutput = `Words: [${allWords
-			.map((word) => `'${word}'`)
-			.join(', ')}]`;
+    const formatWordsAsCode = () => {
+        const codeOutput = `Words: [${allWords
+            .map((word) => `'${word}'`)
+            .join(', ')}]`;
 
-		const blob = new Blob([codeOutput], { type: 'text/plain' });
+        const blob = new Blob([codeOutput], { type: 'text/plain' });
 
-		const url = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
 
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'words.txt';
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'words.txt';
 
-		a.click();
+        a.click();
 
-		URL.revokeObjectURL(url);
-	};
+        URL.revokeObjectURL(url);
+    };
 
-	return (
-		<div>
-			<DownloadPdfButton width={width} height={5} words={allWords} />
-			<button onClick={formatWordsAsCode}>Download Words as Code</button>
-		</div>
-	);
+    return (
+        <div className="navbar">
+            <DownloadPdfButton width={width} height={5} words={allWords} />
+            <button className="btn" onClick={formatWordsAsCode}>
+                Download Words as Code
+            </button>
+        </div>
+    );
 };
