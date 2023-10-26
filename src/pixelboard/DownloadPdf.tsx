@@ -24,7 +24,7 @@ const DownloadPdfButton = ({ width, height, words }: Props) => {
 			for (let j = 0; j < saved[0][0].length; j++) {
 				pdf.addPageWithTitle(`y: ${k} + x: ${j}`);
 				for (let i = 0; i < words.length; i++) {
-					pdf.addContent(`${wordSaved[i]}: ${saved[i][k][j]}`);
+					pdf.addContent(`${wordSaved[i]}: ${saved[i][k][j]?'X':'O'}`);
 				}
 			}
 		}

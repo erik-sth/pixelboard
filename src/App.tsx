@@ -50,6 +50,8 @@ function App() {
 				onChange={(e) => setWidth(parseInt(e.target.value))}
 			></input>
 
+     <div>{width}</div>
+
 			<MatrixComponent
 				width={width}
 				height={5}
