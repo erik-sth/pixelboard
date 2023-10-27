@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { setAllCharToLocalStorage } from '../utils/charLocalStorage';
 import charToCoordinates from '../data/char';
-
+import { number_map} from "../data/numberToChar";
 import Matrix from '../Class/Matrix';
 import { createEmptyMatrix } from '../utils/matrix';
 
@@ -35,8 +35,9 @@ const MatrixComponent = ({ height, width, word }: Props) => {
 
     return (
         <div style={{ width: '60%' }}>
+            matrix[0]?.map((column,index)=> <span>number_map[index]</span>)
             {matrixV.map((row, rowIndex) => (
-                <div style={{ height: '20px' }} key={rowIndex}><span>{rowIndex}</span>
+                <div style={{ height: '20px' }} key={rowIndex}><span className="white">{rowIndex}</span>
                     {row.map((cell, colIndex) => (
                         <span
                             key={colIndex}
