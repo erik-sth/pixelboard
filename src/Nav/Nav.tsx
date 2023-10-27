@@ -1,4 +1,4 @@
-import DownloadPdfButton from './pixelboard/DownloadPdf';
+import DownloadPdfButton from './DownloadPdfButton';
 
 interface Props {
     width: number;

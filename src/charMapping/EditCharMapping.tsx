@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     getCharCoordinatesFromLocal,
     saveCharCoordinatesToLocal,
@@ -9,7 +9,7 @@ interface Props {
     input: string;
 }
 
-const Char: React.FC<Props> = ({ input }) => {
+const Char = ({ input }: Props) => {
     const initialMatrix: number[][] = getCharCoordinatesFromLocal()[input];
 
     const [matrix, setMatrix] = useState<number[][]>(initialMatrix);

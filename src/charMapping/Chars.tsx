@@ -4,10 +4,10 @@ import {
     removeCharsFromLocalStorage,
     setAllCharToLocalStorage,
 } from '../utils/charLocalStorage';
-import Char from './char';
+import Char from './EditCharMapping';
 import charToCoordinates from '../data/char';
 
-export const AllChar = () => {
+export const Chars = () => {
     const chars = Object.keys(getCharCoordinatesFromLocal());
     const [currentChar, setCurrentChar] = useState<string>('');
 
@@ -69,4 +69,4 @@ export const AllChar = () => {
     );
 };
 
-export default AllChar;
+export default Chars;
