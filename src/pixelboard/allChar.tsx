@@ -35,6 +35,7 @@ export const AllChar = () => {
                     <form onSubmit={handleFormSubmit}>
                         <input
                             name="textInput"
+                            className="input"
                             placeholder="Enter text"
                             maxLength={1}
                         />
