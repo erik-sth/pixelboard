@@ -36,7 +36,7 @@ const MatrixComponent = ({ height, width, word }: Props) => {
     return (
         <div style={{ width: '60%' }}>
             {matrixV.map((row, rowIndex) => (
-                <div style={{ height: '20px' }} key={rowIndex}>
+                <div style={{ height: '20px' }} key={rowIndex}><span>{rowIndex}</span>
                     {row.map((cell, colIndex) => (
                         <span
                             key={colIndex}
