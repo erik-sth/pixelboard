@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import MatrixComponent from './pixelboard/pixelboard';
-import AllChar from './pixelboard/allChar';
-import { Nav } from './Nav';
-import './App.css';
+import { Nav } from './Nav/Nav';
+import MatrixComponent from './pixelboard/Pixelboard';
 import WordList from './pixelboard/WordList';
+import Chars from './charMapping/Chars';
+import './App.css';
 function App() {
     const [currentString, setCurrentString] = useState<string>('');
     const [allWords, setAllWords] = useState<string[]>([]);
-    const [width, setWidth] = useState<number>(20);
+    const [width, setWidth] = useState<number>(19);
 
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -92,7 +92,7 @@ function App() {
                 </div>
             </div>
 
-            <AllChar />
+            <Chars />
         </div>
     );
 }
