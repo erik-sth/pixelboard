@@ -78,7 +78,7 @@ function App() {
                         onChange={handleFileUpload}
                         accept=".txt"
                     />
-                    <h4>width:</h4>
+                    <h4 className="reset">width:</h4>
                     <div className="container">
                         <input
                             type="range"
