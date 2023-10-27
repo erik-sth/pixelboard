@@ -46,7 +46,7 @@ function App() {
         <div>
             <Nav allWords={allWords} width={width} />
 
-            <div className="container">
+            <div className="container space-between">
                 <div>
                     <form onSubmit={handleFormSubmit}>
                         <input

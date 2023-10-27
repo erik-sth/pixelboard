@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { setAllCharToLocalStorage } from '../utils/charLocalStorage';
 import charToCoordinates from '../data/char';
-import { number_map} from "../data/numberToChar";
+import { number_map } from '../data/numberToChar';
 import Matrix from '../Class/Matrix';
 import { createEmptyMatrix } from '../utils/matrix';
 
@@ -34,24 +34,42 @@ const MatrixComponent = ({ height, width, word }: Props) => {
     }, [width]);
 
     return (
-        <div style={{ width: '60%' }}>
-            {     matrix[0]?.map((column,index)=> <span>number_map[index]</span>)}
-            {matrixV.map((row, rowIndex) => (
-                <div style={{ height: '20px' }} key={rowIndex}><span className="white">{rowIndex}</span>
-                    {row.map((cell, colIndex) => (
+        <div
+            style={{ width: '60%', display: 'flex', justifyContent: 'center' }}
+        >
+            <div>
+                <div style={{ paddingLeft: '13px' }}>
+                    {matrixV[0]?.map((_column, index) => (
                         <span
-                            key={colIndex}
+                            className="white"
                             style={{
                                 display: 'inline-block',
-                                width: '20px',
+                                width: '22px', // width of pixel + 1px to replace border left and right
                                 height: '20px',
-                                border: '1px solid #000',
-                                background: cell ? 'black' : 'white',
                             }}
-                        />
+                        >
+                            {number_map[index]}
+                        </span>
                     ))}
                 </div>
-            ))}
+                {matrixV.map((row, rowIndex) => (
+                    <div style={{ height: '20px' }} key={rowIndex}>
+                        <span className="white">{rowIndex}</span>
+                        {row.map((cell, colIndex) => (
+                            <span
+                                key={colIndex}
+                                style={{
+                                    display: 'inline-block',
+                                    width: '20px',
+                                    height: '20px',
+                                    border: '1px solid #000',
+                                    background: cell ? 'black' : 'white',
+                                }}
+                            />
+                        ))}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
