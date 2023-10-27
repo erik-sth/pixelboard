@@ -7,7 +7,7 @@ interface Props {
 
 export const Nav = ({ width, allWords }: Props) => {
     const formatWordsAsCode = () => {
-        const codeOutput = `Words: [${allWords
+        const codeOutput = `[${allWords
             .map((word) => `'${word}'`)
             .join(', ')}]`;
 
