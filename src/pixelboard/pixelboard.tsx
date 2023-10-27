@@ -54,7 +54,7 @@ const MatrixComponent = ({ height, width, word }: Props) => {
                 </div>
                 {matrixV.map((row, rowIndex) => (
                     <div style={{ height: '20px' }} key={rowIndex}>
-                        <span className="white">{rowIndex}</span>
+                        <span className="white">{rowIndex + 1}</span>
                         {row.map((cell, colIndex) => (
                             <span
                                 key={colIndex}

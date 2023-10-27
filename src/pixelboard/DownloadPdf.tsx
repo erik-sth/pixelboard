@@ -1,5 +1,6 @@
 import Matrix from '../Class/Matrix';
 import PDFGenerator from '../Class/Pdf';
+import { number_map } from '../data/numberToChar';
 
 interface Props {
     words: string[];
@@ -22,7 +23,12 @@ const DownloadPdfButton = ({ width, height, words }: Props) => {
         calc();
         for (let k = 0; k < saved[0].length; k++) {
             for (let j = 0; j < saved[0][0].length; j++) {
-                pdf.addPageWithTitle(`y: ${k} + x: ${j}`);
+                const position: string = number_map[j] + (k + 1);
+                if (j == 0 && k == 0) {
+                    pdf.addTitel(position);
+                } else {
+                    pdf.addPageWithTitle(position);
+                }
                 for (let i = 0; i < words.length; i++) {
                     pdf.addContent(
                         `${wordSaved[i]}: ${saved[i][k][j] ? 'X' : 'O'}`
