@@ -9,7 +9,7 @@ interface Props {
     input: string;
 }
 
-const Char = ({ input }: Props) => {
+const CharMatrix = ({ input }: Props) => {
     const initialMatrix: number[][] = getCharCoordinatesFromLocal()[input];
 
     const [matrix, setMatrix] = useState<number[][]>(initialMatrix);
@@ -76,4 +76,4 @@ const Char = ({ input }: Props) => {
     );
 };
 
-export default Char;
+export default CharMatrix;

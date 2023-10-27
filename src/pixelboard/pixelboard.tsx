@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { setAllCharToLocalStorage } from '../utils/charLocalStorage';
-import charToCoordinates from '../data/char';
+import charToCoordinates from '../data/charToCoordinates';
 import { number_map } from '../data/numberToChar';
 import Matrix from '../Class/Matrix';
 import { createEmptyMatrix } from '../utils/matrix';

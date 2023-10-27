@@ -4,8 +4,8 @@ import {
     removeCharsFromLocalStorage,
     setAllCharToLocalStorage,
 } from '../utils/charLocalStorage';
-import Char from './EditCharMapping';
-import charToCoordinates from '../data/char';
+import CharMatrix from './EditCharMapping';
+import charToCoordinates from '../data/charToCoordinates';
 
 export const Chars = () => {
     const chars = Object.keys(getCharCoordinatesFromLocal());
@@ -28,7 +28,7 @@ export const Chars = () => {
         <div className="max-width container">
             <div>
                 <h4 className="reset">Editing: {currentChar}</h4>
-                <Char input={currentChar} />
+                <CharMatrix input={currentChar} />
             </div>
             <div>
                 <div className="container">
