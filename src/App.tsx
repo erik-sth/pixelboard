@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Nav } from './Nav/Nav';
-import MatrixComponent from './pixelboard/Pixelboard';
 import WordList from './pixelboard/WordList';
 import Chars from './charMapping/Chars';
 import './App.css';
+import MatrixComponent from './pixelboard/pixelboard';
 function App() {
     const [currentString, setCurrentString] = useState<string>('');
     const [allWords, setAllWords] = useState<string[]>([]);
