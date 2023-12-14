@@ -1,4 +1,5 @@
 import DownloadPdfButton from './DownloadPdfButton';
+import ExportCharSetButton from './ExportCharSetButton';
 
 interface Props {
     width: number;
@@ -26,6 +27,7 @@ export const Nav = ({ width, allWords }: Props) => {
 
     return (
         <div className="navbar">
+            <ExportCharSetButton />
             <DownloadPdfButton width={width} height={5} words={allWords} />
             <button className="btn" onClick={formatWordsAsCode}>
                 Download Words as Code
